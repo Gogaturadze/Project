@@ -14,7 +14,7 @@ class HangmanService:
     def __init__(self, life=int):
 
         # სიტყვების ჩატვირთვა ფაილიდან
-        with open("hangman/words.json", "r", encoding="utf-8") as file:
+        with open("words.json", "r", encoding="utf-8") as file:
             data = json.load(file)
             self.word_list = data["words"]
 
@@ -62,6 +62,7 @@ class HangmanGame(HangmanService):
 
             if "_" not in hidden_word:
                 print("გილოცავ! გამოცნობილი სიტყვაა:", chosen_word)
+                return
 
         print("სამწუხაროდ თქვენ წააგეთ, სწორი სიტყვა იყო:", chosen_word)
 
