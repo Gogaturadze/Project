@@ -28,14 +28,14 @@ class StudentService:
     # JSON ჩამოტვირთვა
     def load_json(self):
         try:
-            with open("Student/students.json", "r") as file:
+            with open("students.json", "r") as file:
                 return json.load(file)
         except (FileNotFoundError, json.JSONDecodeError):
             return {}
 
     # JSON შენახვა
     def save_json(self, data):
-        with open("Student/students.json", "w") as file:
+        with open("students.json", "w") as file:
             json.dump(data, file, indent=4)
 
     # გადაყავს ქულები ასოებად
@@ -80,9 +80,9 @@ class StudentFunctions(StudentService):
         data = self.load_json()
 
         if data:
-            new_id = str(max(int(info["roll_number"]) for info in data.values()) + 1)
+            new_id = max(int(info["roll_number"]) for info in data.values()) + 1
         else:
-            new_id = "1"
+            new_id = 1
 
         student = Student(name, new_id, grade)
 
@@ -111,9 +111,10 @@ class StudentFunctions(StudentService):
         input("გაგრძელებისთვის დააჭირეთ Enter...")
 
     # სტუდენტის ძებნა roll_number-ით
-    def find_student(self, tmp):
+    def find_student(self):
         data = self.load_json()
         search_id = input("შეიყვანეთ სტუდენტის Roll Number: ")
+
         for key, i in data.items():
             if str(i["roll_number"]) == search_id:
                 print(
@@ -122,6 +123,7 @@ class StudentFunctions(StudentService):
                 )
                 input("გაგრძელებისთვის დააჭირეთ Enter...")
                 return key
+
         print("\nსტუდენტი ვერ მოიძებნა.\n")
 
         cont_option = {
