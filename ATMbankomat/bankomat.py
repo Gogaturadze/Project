@@ -20,7 +20,7 @@ class Atmservices:
         self.users=self.load_json()
 
     def log(self, text):
-        with open("../bankomat1.log", "a", encoding="utf-8") as file:
+        with open("bankomat1.log", "a", encoding="utf-8") as file:
             file.write(text + "\n")
 
     def add_user(self):
