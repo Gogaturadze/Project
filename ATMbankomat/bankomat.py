@@ -58,8 +58,13 @@ class Atmservices:
 
     def show_users(self):
         if self.users:
-            for user in self.users.items():
-                print(user)
+            for user,data in self.users.items():
+                print(f"მომხმარებელი {user} "
+                      f" სახელი {data["name"]} "
+                      f" გვარი {data['lastname']} "
+                      f" ანგარიშის ნომერი{data['account_num']} "
+                      f" ბალანსი {data['balance']} "
+                      f" პინ კოდი {data['pin']}")
         else:
             print("მომხმარებელი არ არსებობს")
 
